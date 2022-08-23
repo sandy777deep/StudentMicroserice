@@ -12,5 +12,5 @@ public class ProjectApplication {
 		SpringApplication.run(ProjectApplication.class, args);
 	}
 
-	public String s="Kee";
+
 }
