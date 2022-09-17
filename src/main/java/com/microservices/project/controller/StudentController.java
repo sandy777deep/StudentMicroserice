@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-
+import javax.validation.Valid;
 import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,7 +45,7 @@ public class StudentController {
 	}
 
 	@PostMapping("/add")
-	private ResponseEntity<Student> InsertStudent( @RequestBody Student s) {
+	private ResponseEntity<Student> InsertStudent(@Valid @RequestBody Student s) {
 		Student stuObj=studentImpl.addStudent(s);
 		return new ResponseEntity<Student>(stuObj,HttpStatus.CREATED);
 	}
@@ -75,6 +75,15 @@ public class StudentController {
 		System.out.println(ApplicationName);
 		return ApplicationName;
 
+	}
+	
+	@GetMapping("/getOneById/{id}")
+	private Student getStudentbyID(@PathVariable Long id) {
+		Student sobj= studentImpl.getbyId(id);
+	System.out.println(sobj);
+	return sobj;
+	
+	
 	}
 
 }

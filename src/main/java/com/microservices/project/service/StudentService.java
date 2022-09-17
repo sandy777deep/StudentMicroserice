@@ -30,7 +30,7 @@ public class StudentService implements studentImpl {
 		
 		if (s.getStudentName().equalsIgnoreCase("") || s.getDateOfBirth() == null
 				|| (s.getStandered() < 0 || s.getStandered() > 12)) {
-			throw new RuntimeException("Please input the data correctly");
+			throw new EmptyInputException("Please input the data correctly");
 		}	
 		List<Student> S = studentRepo.findAll();
 		for(Student sObj:S) {
@@ -68,6 +68,12 @@ public class StudentService implements studentImpl {
 		s.setStandered(standered);
 		studentRepo.save(s);
 		return s;
+	}
+
+	@Override
+	public Student getbyId(Long id) {
+		
+		return studentRepo.getOne(id);
 	}
 
 }

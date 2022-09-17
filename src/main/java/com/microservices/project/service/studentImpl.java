@@ -19,5 +19,7 @@ public interface studentImpl  {
     public Student put(Student s);
 
     public Student patch(Long id,int standered);
+    
+    public Student getbyId(Long id);
 }
 
