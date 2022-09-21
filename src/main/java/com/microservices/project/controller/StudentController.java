@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -28,6 +29,7 @@ import com.microservices.project.service.studentImpl;
 
 @RestController
 @RequestMapping(value = "/student")
+
 public class StudentController {
 
 	@Autowired
@@ -46,6 +48,7 @@ public class StudentController {
 
 	@PostMapping("/add")
 	private ResponseEntity<Student> InsertStudent(@Valid @RequestBody Student s) {
+		
 		Student stuObj=studentImpl.addStudent(s);
 		return new ResponseEntity<Student>(stuObj,HttpStatus.CREATED);
 	}

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.handler.annotation.support.MethodArgumentNotValidException;
 import org.springframework.stereotype.Service;
 
 import com.microservices.project.exceptions.EmptyInputException;
@@ -28,14 +29,12 @@ public class StudentService implements studentImpl {
 
 	public Student addStudent(Student s) {
 		
-		if (s.getStudentName().equalsIgnoreCase("") || s.getDateOfBirth() == null
-				|| (s.getStandered() < 0 || s.getStandered() > 12)) {
-			throw new EmptyInputException("Please input the data correctly");
-		}	
+			
 		List<Student> S = studentRepo.findAll();
 		for(Student sObj:S) {
 			if(s.getStudentName().equalsIgnoreCase(sObj.getStudentName())) {
-				throw new RuntimeException("Student with same name already present");
+				System.out.println("present");
+				throw new ResourceNotfoundException("Student with same name already present");
 			}
 		}
 			

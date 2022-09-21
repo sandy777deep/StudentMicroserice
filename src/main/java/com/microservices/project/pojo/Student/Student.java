@@ -17,6 +17,7 @@ import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.microservices.project.customAnnotation.myValidation;
 
 @JsonIgnoreProperties({ "hibernateLazyInitializer" })
 @Entity
@@ -30,8 +31,7 @@ public class Student {
 	@Column(unique = true)
 	private String studentName;
 	@Column(nullable = false)
-	@Min(1)
-	@Max(12)
+	@myValidation
 	private int standered;
 	@Basic
 	@Temporal(TemporalType.DATE)
